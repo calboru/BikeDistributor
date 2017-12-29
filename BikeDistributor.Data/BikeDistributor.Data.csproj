@@ -108,7 +108,10 @@
     <Compile Include="Context\BikeDistributorContext.cs" />
     <Compile Include="Common\BaseEntity.cs" />
     <Compile Include="Entities\BusinessEntity.cs" />
+    <Compile Include="Entities\DiscountCode.cs" />
     <Compile Include="Entities\Location.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderLine.cs" />
     <Compile Include="Interfaces\Common\IDataRepository.cs" />
     <Compile Include="Interfaces\Common\IReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Common\IRepository.cs" />
