@@ -43,9 +43,11 @@
   <ItemGroup>
     <Compile Include="Common\BaseModel.cs" />
     <Compile Include="BusinessEntityModel.cs" />
-    <Compile Include="Common\DiscountCodeModel.cs" />
+    <Compile Include="DiscountCodeModel.cs" />
     <Compile Include="LocationModel.cs" />
-    <Compile Include="Product\ProductModel.cs" />
+    <Compile Include="OrderModel.cs" />
+    <Compile Include="OrderLineModel.cs" />
+    <Compile Include="ProductModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,8 +56,6 @@
       <Name>BikeDistributor.Interfaces</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Interfaces\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

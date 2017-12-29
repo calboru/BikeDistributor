@@ -78,6 +78,7 @@
     <Compile Include="Common\EntityMappingService.cs" />
     <Compile Include="Common\FileService.cs" />
     <Compile Include="Common\LogService.cs" />
+    <Compile Include="Common\RandomValueService.cs" />
     <Compile Include="Constants\ConfigurationConstants.cs" />
     <Compile Include="Data\DataRepositoryService.cs" />
     <Compile Include="DiscountService.cs" />

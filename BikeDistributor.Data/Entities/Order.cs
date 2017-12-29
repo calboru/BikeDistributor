@@ -13,7 +13,7 @@ namespace BikeDistributor.Data.Entities
         public DateTime OrderDate { get; set; }
         public BusinessEntity OrderedBy { get; set; }
         public DiscountCode DiscountCode { get; set; }
-        public ICollection<OrderLine> Collection { get; set; }
+        public ICollection<OrderLine> Products { get; set; }
 
     }
 }

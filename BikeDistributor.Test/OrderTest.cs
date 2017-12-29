@@ -12,7 +12,7 @@ namespace BikeDistributor.Test
         [TestMethod]
         public void ReceiptOneDefy()
         {
-            var order = new Order("Anywhere Bike Shop");
+            var order = new Orderx("Anywhere Bike Shop");
             order.AddLine(new Line(Defy, 1));
             Assert.AreEqual(ResultStatementOneDefy, order.Receipt());
         }
@@ -26,7 +26,7 @@ Total: $1,072.50";
         [TestMethod]
         public void ReceiptOneElite()
         {
-            var order = new Order("Anywhere Bike Shop");
+            var order = new Orderx("Anywhere Bike Shop");
             order.AddLine(new Line(Elite, 1));
             Assert.AreEqual(ResultStatementOneElite, order.Receipt());
         }
@@ -40,7 +40,7 @@ Total: $2,145.00";
         [TestMethod]
         public void ReceiptOneDuraAce()
         {
-            var order = new Order("Anywhere Bike Shop");
+            var order = new Orderx("Anywhere Bike Shop");
             order.AddLine(new Line(DuraAce, 1));
             Assert.AreEqual(ResultStatementOneDuraAce, order.Receipt());
         }
@@ -54,7 +54,7 @@ Total: $5,362.50";
         [TestMethod]
         public void HtmlReceiptOneDefy()
         {
-            var order = new Order("Anywhere Bike Shop");
+            var order = new Orderx("Anywhere Bike Shop");
             order.AddLine(new Line(Defy, 1));
             Assert.AreEqual(HtmlResultStatementOneDefy, order.HtmlReceipt());
         }
@@ -64,7 +64,7 @@ Total: $5,362.50";
         [TestMethod]
         public void HtmlReceiptOneElite()
         {
-            var order = new Order("Anywhere Bike Shop");
+            var order = new Orderx("Anywhere Bike Shop");
             order.AddLine(new Line(Elite, 1));
             Assert.AreEqual(HtmlResultStatementOneElite, order.HtmlReceipt());
         }
@@ -74,7 +74,7 @@ Total: $5,362.50";
         [TestMethod]
         public void HtmlReceiptOneDuraAce()
         {
-            var order = new Order("Anywhere Bike Shop");
+            var order = new Orderx("Anywhere Bike Shop");
             order.AddLine(new Line(DuraAce, 1));
             Assert.AreEqual(HtmlResultStatementOneDuraAce, order.HtmlReceipt());
         }

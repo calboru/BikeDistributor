@@ -113,7 +113,6 @@
     <Compile Include="Entities\Order.cs" />
     <Compile Include="Entities\OrderLine.cs" />
     <Compile Include="Interfaces\Common\IDataRepository.cs" />
-    <Compile Include="Interfaces\Common\IRandomValueService.cs" />
     <Compile Include="Interfaces\Common\IReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Common\IRepository.cs" />
     <Compile Include="Migrations\201712282011397_InitalMigration.cs" />
@@ -131,6 +130,18 @@
     <Compile Include="Migrations\201712290017215_changed create date time to null.cs" />
     <Compile Include="Migrations\201712290017215_changed create date time to null.Designer.cs">
       <DependentUpon>201712290017215_changed create date time to null.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712291745552_Adding entities.cs" />
+    <Compile Include="Migrations\201712291745552_Adding entities.Designer.cs">
+      <DependentUpon>201712291745552_Adding entities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712291757082_Adding quantity to order line.cs" />
+    <Compile Include="Migrations\201712291757082_Adding quantity to order line.Designer.cs">
+      <DependentUpon>201712291757082_Adding quantity to order line.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712291940419_Making productId required in orderline.cs" />
+    <Compile Include="Migrations\201712291940419_Making productId required in orderline.Designer.cs">
+      <DependentUpon>201712291940419_Making productId required in orderline.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\Product.cs" />
@@ -151,6 +162,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201712290017215_changed create date time to null.resx">
       <DependentUpon>201712290017215_changed create date time to null.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712291745552_Adding entities.resx">
+      <DependentUpon>201712291745552_Adding entities.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712291757082_Adding quantity to order line.resx">
+      <DependentUpon>201712291757082_Adding quantity to order line.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712291940419_Making productId required in orderline.resx">
+      <DependentUpon>201712291940419_Making productId required in orderline.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

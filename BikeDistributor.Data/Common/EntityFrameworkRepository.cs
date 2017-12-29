@@ -18,7 +18,6 @@ namespace BikeDistributor.Data.Common
             : base(context)
         {
         }
-         
 
         public virtual void Create<TEntity>(TEntity entity, string createdBy = null)
             where TEntity : class, IEntity

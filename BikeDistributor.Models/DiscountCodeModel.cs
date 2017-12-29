@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using BikeDistributor.Models.Common;
 
-namespace BikeDistributor.Models.Common
+namespace BikeDistributor.Models
 {
-    public class DiscountCodeModel
+    public class DiscountCodeModel: BaseModel<int>
     {
-        public string Id { get; set; }
         public string CampainCode { get; set; }
         public int QuantityRange1 { get; set; }
         public int QuantityRange2 { get; set; }
