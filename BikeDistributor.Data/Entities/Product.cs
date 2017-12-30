@@ -4,9 +4,10 @@ namespace BikeDistributor.Data.Entities
 {
     public class Product: BaseEntity<int>
     {
-        public string Brand { get; set; }
-        public string Model { get; set; }
-        public string Make { get; set; }
-        public string Sku { get; set; }
+        public virtual string Brand { get; set; }
+        public virtual string Model { get; set; }
+        public virtual string Make { get; set; }
+        public virtual string Sku { get; set; }
+        public double Msrp { get; set; }
     }
 }

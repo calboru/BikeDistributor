@@ -25,7 +25,7 @@ namespace BikeDistributor.Services.Infrastructure
             container.RegisterType<ILogService, LogService>();
             container.RegisterType<IJsonSerializerService, JsonSerializerService>();
             container.RegisterType<IFileService, FileService>();
-            //container.RegisterType<IDiscountService, DiscountService>();
+            container.RegisterType<IDiscountService, DiscountService>();
             container.RegisterType(typeof(IRepository), typeof(EntityFrameworkRepository<DbContext>), 
                 new InjectionConstructor(Startup.BikeDistribitorDb));
             container.RegisterType<IRandomValueService, RandomValueService>();

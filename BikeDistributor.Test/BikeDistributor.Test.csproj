@@ -80,6 +80,10 @@
       <Project>{1726365d-8bd8-47c3-b7f6-197cf8b5946a}</Project>
       <Name>BikeDistributor.Services</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BikeDistributor.Shared\BikeDistributor.Shared.csproj">
+      <Project>{ec4302f5-4c47-41e5-aad6-8482b9dda690}</Project>
+      <Name>BikeDistributor.Shared</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BikeDistributor\BikeDistributor.csproj">
       <Project>{4fba25b5-279c-4fd3-a904-ff88bef4a480}</Project>
       <Name>BikeDistributor</Name>

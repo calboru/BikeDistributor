@@ -1,17 +1,17 @@
 ﻿using BikeDistributor.Models.Common;
+using Microsoft.Build.Framework;
 
 namespace BikeDistributor.Models
 {
     public class LocationModel: BaseModel<int>
     {
-        /// <summary>
-        /// Location type such as Billing, Mailing, Shipping
-        /// </summary>
-        /// 
-        /// 
-
+       
         public int BusinessEntityId { get; set; }
 
+        /// <summary>
+        /// Billing, Shipping
+        /// </summary>
+        [Required]
         public string Type { get; set; }
 
         public string AddressLine1 { get; set; }

@@ -11,8 +11,8 @@ using BikeDistributor.Data.Interfaces.Common;
 using BikeDistributor.Data.Common;
 using BikeDistributor.Data.Entities;
 using BikeDistributor.Interfaces.CommonServices;
-using BikeDistributor.Interfaces.Shared;
 using BikeDistributor.Services.Common;
+using BikeDistributor.Shared.Interfaces;
 using Unity.Attributes;
 
 namespace BikeDistributor.Services.Data

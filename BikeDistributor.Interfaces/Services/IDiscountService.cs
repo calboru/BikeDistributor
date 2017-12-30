@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BikeDistributor.Models;
+using System;
 using System.Collections.Generic;
 using System.Dynamic;
 using System.Linq;
@@ -10,9 +11,7 @@ namespace BikeDistributor.Interfaces.Services
 {
     public interface IDiscountService
     {
-        //List<DiscountCodeModel> DiscountRules { get; set; }
-        //bool LoadConfiguration();
-
-        //IProductModel CalculateDiscount(IProductModel product);
+        OrderModel CalculateDiscount(OrderModel orderModel);
+        OrderLineModel ApplyDiscount(OrderLineModel orderLineModel, DiscountCodeModel discountCodeModel);
     }
 }

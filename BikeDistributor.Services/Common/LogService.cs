@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BikeDistributor.Interfaces.CommonServices;
-using BikeDistributor.Interfaces.Shared;
+using BikeDistributor.Shared.Interfaces;
 
 namespace BikeDistributor.Services.Common
 {

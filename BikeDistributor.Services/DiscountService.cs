@@ -1,104 +1,87 @@
-﻿//using System;
-//using System.Collections;
-//using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
-//using BikeDistributor.Interfaces.CommonServices;
-//using BikeDistributor.Interfaces.Services;
-//using BikeDistributor.Models.Common;
-//using BikeDistributor.Models.Interfaces;
-//using BikeDistributor.Services.Common;
-//using BikeDistributor.Services.Constants;
+﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using BikeDistributor.Data.Entities;
+using BikeDistributor.Interfaces.CommonServices;
+using BikeDistributor.Interfaces.Services;
+using BikeDistributor.Models;
+using BikeDistributor.Models.Common;
+using BikeDistributor.Services.Common;
+using BikeDistributor.Services.Constants;
 
-//namespace BikeDistributor.Services
-//{
-//    public class DiscountService: BaseService, IDiscountService
-//    {
-//        private readonly IJsonSerializerService _jsonJsonSerializerService;
-//        private readonly IAppSettingsService _appSettingsService;
-//        private readonly IFileService _fileService;
-//        public  List<DiscountCodeModel> DiscountRules { get; set; }
+namespace BikeDistributor.Services
+{
+    public class DiscountService : BaseService, IDiscountService
+    {
 
-//        public DiscountService(IJsonSerializerService iJsonSerializerService, IAppSettingsService appSettingsService, IFileService fileService)
-//        {
-//            DiscountRules = new List<DiscountCodeModel>();
-//            _jsonJsonSerializerService = iJsonSerializerService;
-//            _appSettingsService = appSettingsService;
-//            _fileService = fileService;
+        private readonly IDataRepositoryService _dataRepositoryService;
 
-//        }
-        
-//        public bool LoadConfiguration()
-//        {
-//            try
-//            {
-//                var discountRulesFilePath = _appSettingsService.Get(ConfigurationConstants.DiscountCodesConfigFile);
-//                var discountRulesText = _fileService.ReadAllText(discountRulesFilePath);
-//                DiscountRules = _jsonJsonSerializerService.DeserializeObject<DiscountCodeModel>(discountRulesText);
+        public DiscountService(IDataRepositoryService dataRepositoryService)
+        {
+            _dataRepositoryService = dataRepositoryService;
+        }
 
-//                return true;
-//            }
-//            catch (Exception e)
-//            {
-//                LogService.Error(e);
-//                throw;
-//            }
-//        }
+        public OrderModel CalculateDiscount(OrderModel orderModel)
+        {
+            var calculatedOrderLines = new List<OrderLineModel>();
+            var discountCodeModel = _dataRepositoryService.GetOne<DiscountCodeModel, DiscountCode>(d => d.Id == orderModel.DiscountCode.Id);
+            if (discountCodeModel != null)
+            {
+                calculatedOrderLines.AddRange(orderModel.Products.Select(orderLine => ApplyDiscount(orderLine, discountCodeModel)));
+            }
+            orderModel.Products = calculatedOrderLines;
+            return orderModel;
+        }
+     
+        public OrderLineModel ApplyDiscount(OrderLineModel orderLineModel, DiscountCodeModel discountCodeModel)
+        {
 
-//        public IProductModel CalculateDiscount(IProductModel product)
-//        {
-//            var discountRule =
-//                DiscountRules.SingleOrDefault(x => x.Id.ToLower().Equals(product.DiscountRuleCode.ToLower()));
-            
-//            if (discountRule == null) return product;
-            
+            switch (discountCodeModel.Flag.ToLower())
+            {
+                case ">=":
+                    if (orderLineModel.Quantity >= discountCodeModel.QuantityRange1)
+                    {
+                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                    }
+                    break;
+                case "<=":
+                    if (orderLineModel.Quantity <= discountCodeModel.QuantityRange1)
+                    {
+                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                    }
+                    break;
+                case ">":
+                    if (orderLineModel.Quantity > discountCodeModel.QuantityRange1)
+                    {
+                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                    }
+                    break;
+                case "<":
+                    if (orderLineModel.Quantity < discountCodeModel.QuantityRange1)
+                    {
+                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                    }
+                    break;
+                case "range":
+                    if (orderLineModel.Quantity >= discountCodeModel.QuantityRange1 && orderLineModel.Quantity <= discountCodeModel.QuantityRange2)
+                    {
+                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                    }
 
-//            switch (discountRule.Flag.ToLower())
-//            {
-//                case ">=":
-//                    if (product.Quantity >= discountRule.QuantityRange1)
-//                    {
-//                        product.DiscountedPrice = product.BasePrice * discountRule.DiscountRate;
-//                    }
-//                    break;
-//                case "<=":
-//                    if (product.Quantity <= discountRule.QuantityRange1)
-//                    {
-//                        product.DiscountedPrice = product.BasePrice * discountRule.DiscountRate;
-//                    }
-//                    break;
-//                case ">":
-//                    if (product.Quantity > discountRule.QuantityRange1)
-//                    {
-//                        product.DiscountedPrice = product.BasePrice * discountRule.DiscountRate;
-//                    }
-//                    break;
-//                case "<":
-//                    if (product.Quantity < discountRule.QuantityRange1)
-//                    {
-//                        product.DiscountedPrice = product.BasePrice * discountRule.DiscountRate;
-//                    }
-//                    break;
-//                case "range":
-//                    if (product.Quantity >= discountRule.QuantityRange1 &&  product.Quantity <= discountRule.QuantityRange2)
-//                    {
-//                        product.DiscountedPrice = product.BasePrice * discountRule.DiscountRate;
-//                    }
+                    break;
+                default:
+                    var errorMessage =
+                        $"Invalid discount flag for {discountCodeModel.Flag} !";
 
-//                    break;
+                    LogService.Error(errorMessage);
+                    throw new ArgumentException(errorMessage);
 
-//                default:
-//                    var errorMessage =
-//                        $"Invalid discount flag for {discountRule.Flag} flag {discountRule.Flag} is not valid!";
+            }
 
-//                    LogService.Error(errorMessage);
-//                    throw new ArgumentException(errorMessage);
-                  
-//            }
-
-            
-//            return product;
-//        }
-//    }
-//}
+            return orderLineModel;
+        }
+    }
+}

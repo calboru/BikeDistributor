@@ -37,6 +37,9 @@ namespace BikeDistributor.Data.Context
             modelBuilder.Entity<OrderLine>()
                 .HasRequired(x => x.Product);
 
+            modelBuilder.Entity<Order>()
+                .HasRequired(x => x.OrderedBy);
+            
 
         }
     }

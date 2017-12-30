@@ -10,10 +10,10 @@ namespace BikeDistributor.Data.Entities
     public class Order: BaseEntity<int>
     {
 
-        public DateTime OrderDate { get; set; }
-        public BusinessEntity OrderedBy { get; set; }
-        public DiscountCode DiscountCode { get; set; }
-        public ICollection<OrderLine> Products { get; set; }
+        public virtual DateTime OrderDate { get; set; }
+        public virtual BusinessEntity OrderedBy { get; set; }
+        public virtual DiscountCode DiscountCode { get; set; }
+        public virtual ICollection<OrderLine> Products { get; set; }
 
     }
 }

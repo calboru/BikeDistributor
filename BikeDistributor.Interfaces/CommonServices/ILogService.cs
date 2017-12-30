@@ -1,5 +1,5 @@
 ﻿using System;
-using BikeDistributor.Interfaces.Shared;
+using BikeDistributor.Shared.Interfaces;
 
 namespace BikeDistributor.Interfaces.CommonServices
 {

@@ -10,9 +10,9 @@ namespace BikeDistributor.Data.Entities
     public class BusinessEntity: BaseEntity<int>
     {
        
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string CompanyName { get; set; }
-        public ICollection<Location> Location { get; set; }
+        public virtual string FirstName { get; set; }
+        public virtual string LastName { get; set; }
+        public virtual string CompanyName { get; set; }
+        public virtual ICollection<Location> Location { get; set; }
     }
 }

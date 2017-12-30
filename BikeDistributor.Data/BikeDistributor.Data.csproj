@@ -143,6 +143,14 @@
     <Compile Include="Migrations\201712291940419_Making productId required in orderline.Designer.cs">
       <DependentUpon>201712291940419_Making productId required in orderline.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201712291944352_Making OrderedById required in Order.cs" />
+    <Compile Include="Migrations\201712291944352_Making OrderedById required in Order.Designer.cs">
+      <DependentUpon>201712291944352_Making OrderedById required in Order.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201712300000240_adding Msrp to Product and FinalPrice to orderline.cs" />
+    <Compile Include="Migrations\201712300000240_adding Msrp to Product and FinalPrice to orderline.Designer.cs">
+      <DependentUpon>201712300000240_adding Msrp to Product and FinalPrice to orderline.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -172,11 +180,21 @@
     <EmbeddedResource Include="Migrations\201712291940419_Making productId required in orderline.resx">
       <DependentUpon>201712291940419_Making productId required in orderline.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712291944352_Making OrderedById required in Order.resx">
+      <DependentUpon>201712291944352_Making OrderedById required in Order.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201712300000240_adding Msrp to Product and FinalPrice to orderline.resx">
+      <DependentUpon>201712300000240_adding Msrp to Product and FinalPrice to orderline.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\BikeDistributor.Interfaces\BikeDistributor.Interfaces.csproj">
       <Project>{b3de14cc-d377-47eb-b813-1340730efd02}</Project>
       <Name>BikeDistributor.Interfaces</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BikeDistributor.Shared\BikeDistributor.Shared.csproj">
+      <Project>{ec4302f5-4c47-41e5-aad6-8482b9dda690}</Project>
+      <Name>BikeDistributor.Shared</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

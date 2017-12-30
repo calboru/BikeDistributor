@@ -9,8 +9,9 @@ namespace BikeDistributor.Data.Entities
 {
     public class OrderLine: BaseEntity<int>
     {
-        public int OrderId { get; set; }
-        public Product Product { get; set; }
-        public int Quantity { get; set; }
+        public virtual int OrderId { get; set; }
+        public virtual Product Product { get; set; }
+        public virtual int Quantity { get; set; }
+        public virtual double FinalPrice { get; set; }
     }
 }

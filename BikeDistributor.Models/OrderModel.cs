@@ -7,17 +7,10 @@ namespace BikeDistributor.Models
 {
     public class OrderModel: BaseModel<int>
     {
-
-        public DateTime OrderDate { get; set; }
-        public BusinessEntityModel OrderedBy { get; set; }
-        public DiscountCodeModel DiscountCode { get; set; }
-
-        public int TotalQuantity
-        {
-            get { return Products.Sum(x => x.Quantity); }
-        }
-
-        public ICollection<OrderLineModel> Products { get; set; }
+        public virtual DateTime OrderDate { get; set; }
+        public virtual BusinessEntityModel OrderedBy { get; set; }
+        public virtual DiscountCodeModel DiscountCode { get; set; }
+        public virtual ICollection<OrderLineModel> Products { get; set; }
 
     }
 }

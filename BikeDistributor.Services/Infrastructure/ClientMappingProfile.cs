@@ -4,6 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
+using BikeDistributor.Data.Entities;
+using BikeDistributor.Models;
 
 namespace BikeDistributor.Services.Infrastructure
 {
@@ -11,6 +13,8 @@ namespace BikeDistributor.Services.Infrastructure
     {
         public ClientMappingProfile()
         {
+             
+            //Complex mappings goes here.
         }
     }
 }

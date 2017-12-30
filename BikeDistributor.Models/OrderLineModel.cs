@@ -7,5 +7,6 @@ namespace BikeDistributor.Models
         public int OrderId { get; set; }
         public ProductModel Product { get; set; }
         public int Quantity { get; set; }
+        public double FinalPrice { get; set; }
     }
 }

@@ -68,15 +68,22 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IDiscountService.cs" />
     <Compile Include="Services\IJsonSerializerService.cs" />
-    <Compile Include="Shared\IEntity.cs" />
-    <Compile Include="Shared\IModifiableEntity.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Order\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BikeDistributor.Models\BikeDistributor.Models.csproj">
+      <Project>{B47EE8BE-0C72-48B1-A2D6-93E117426B8E}</Project>
+      <Name>BikeDistributor.Models</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BikeDistributor.Shared\BikeDistributor.Shared.csproj">
+      <Project>{ec4302f5-4c47-41e5-aad6-8482b9dda690}</Project>
+      <Name>BikeDistributor.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

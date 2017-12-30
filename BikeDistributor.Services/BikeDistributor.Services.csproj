@@ -101,6 +101,10 @@
       <Project>{B47EE8BE-0C72-48B1-A2D6-93E117426B8E}</Project>
       <Name>BikeDistributor.Models</Name>
     </ProjectReference>
+    <ProjectReference Include="..\BikeDistributor.Shared\BikeDistributor.Shared.csproj">
+      <Project>{EC4302F5-4C47-41E5-AAD6-8482B9DDA690}</Project>
+      <Name>BikeDistributor.Shared</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

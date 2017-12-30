@@ -7,7 +7,7 @@ using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 using BikeDistributor.Data.Interfaces.Common;
-using BikeDistributor.Interfaces.Shared;
+using BikeDistributor.Shared.Interfaces;
 
 namespace BikeDistributor.Data.Common
 {
