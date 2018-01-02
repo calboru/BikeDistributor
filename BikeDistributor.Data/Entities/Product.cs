@@ -9,5 +9,8 @@ namespace BikeDistributor.Data.Entities
         public virtual string Make { get; set; }
         public virtual string Sku { get; set; }
         public double Msrp { get; set; }
+        public double TaxedPrice { get; set; }
+        public double DiscountedPrice { get; set; }
     }
+
 }

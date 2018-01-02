@@ -12,6 +12,5 @@ namespace BikeDistributor.Data.Entities
         public virtual int OrderId { get; set; }
         public virtual Product Product { get; set; }
         public virtual int Quantity { get; set; }
-        public virtual double FinalPrice { get; set; }
     }
 }

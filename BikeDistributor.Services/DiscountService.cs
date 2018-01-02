@@ -26,12 +26,21 @@ namespace BikeDistributor.Services
 
         public OrderModel CalculateDiscount(OrderModel orderModel)
         {
-            var calculatedOrderLines = new List<OrderLineModel>();
-            var discountCodeModel = _dataRepositoryService.GetOne<DiscountCodeModel, DiscountCode>(d => d.Id == orderModel.DiscountCode.Id);
-            if (discountCodeModel != null)
+            if (orderModel == null)
             {
-                calculatedOrderLines.AddRange(orderModel.Products.Select(orderLine => ApplyDiscount(orderLine, discountCodeModel)));
+                const string err = "Null order";
+                LogService.Error(err);
+                throw new Exception(err);
             }
+
+            if (orderModel.DiscountCode == null)
+            {
+                return orderModel;
+            }
+
+            var calculatedOrderLines = new List<OrderLineModel>();
+                calculatedOrderLines.AddRange(orderModel.Products.Select(orderLine => ApplyDiscount(orderLine, orderModel.DiscountCode)));
+
             orderModel.Products = calculatedOrderLines;
             return orderModel;
         }
@@ -44,37 +53,37 @@ namespace BikeDistributor.Services
                 case ">=":
                     if (orderLineModel.Quantity >= discountCodeModel.QuantityRange1)
                     {
-                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
                     break;
                 case "<=":
                     if (orderLineModel.Quantity <= discountCodeModel.QuantityRange1)
                     {
-                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
                     break;
                 case ">":
                     if (orderLineModel.Quantity > discountCodeModel.QuantityRange1)
                     {
-                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
                     break;
                 case "<":
                     if (orderLineModel.Quantity < discountCodeModel.QuantityRange1)
                     {
-                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
                     break;
                 case "range":
                     if (orderLineModel.Quantity >= discountCodeModel.QuantityRange1 && orderLineModel.Quantity <= discountCodeModel.QuantityRange2)
                     {
-                        orderLineModel.FinalPrice = orderLineModel.Product.Msrps * discountCodeModel.DiscountRate;
+                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
 
                     break;
                 default:
                     var errorMessage =
-                        $"Invalid discount flag for {discountCodeModel.Flag} !";
+                        $"Invalid discount flag {discountCodeModel.Flag} !";
 
                     LogService.Error(errorMessage);
                     throw new ArgumentException(errorMessage);

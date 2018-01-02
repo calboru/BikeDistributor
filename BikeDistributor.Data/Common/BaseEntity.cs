@@ -11,6 +11,7 @@ namespace BikeDistributor.Data.Common
     {
         private DateTime? _createdDate;
         public virtual string Name { get; set; }
+
         object IEntity.Id => Id;
 
         [Key]

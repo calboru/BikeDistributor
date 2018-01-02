@@ -9,7 +9,8 @@ namespace BikeDistributor.Models
 
         public string Make { get; set; }
         public string Sku { get; set; }
-
-        public virtual double Msrps { get; set; }
+        public virtual double Msrp { get; set; }
+        public double TaxedPrice { get; set; }
+        public double DiscountedPrice { get; set; }
     }
 }

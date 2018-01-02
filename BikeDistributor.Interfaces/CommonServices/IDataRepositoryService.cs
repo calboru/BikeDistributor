@@ -3,12 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using BikeDistributor.Data.Interfaces.Common;
 using BikeDistributor.Shared.Interfaces;
 
 namespace BikeDistributor.Interfaces.CommonServices
 {
     public interface IDataRepositoryService
     {
+       
+        IRepository Repository { get; set; }
+        IEntityMappingService EntityMapperService { get; set; }
+
         TModel GetOne<TModel, TEntity>(
             Expression<Func<TEntity, bool>> filter = null,
             string includeProperties = null)

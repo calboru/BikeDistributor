@@ -7,7 +7,7 @@ using BikeDistributor.Shared.Interfaces;
 
 namespace BikeDistributor.Models.Common
 {
-    public abstract class BaseModel<T>:IEntity<T>
+    public abstract class BaseModel<T> :IEntity<T>
 
     {
         public string Name { get; set; }

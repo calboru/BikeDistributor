@@ -29,8 +29,8 @@ namespace BikeDistributor.Services.Infrastructure
             container.RegisterType(typeof(IRepository), typeof(EntityFrameworkRepository<DbContext>), 
                 new InjectionConstructor(Startup.BikeDistribitorDb));
             container.RegisterType<IRandomValueService, RandomValueService>();
-
             container.RegisterType<IDataRepositoryService, DataRepositoryService>();
+            container.RegisterType<IOrderService, OrderService>();
          
             Container = container;
             return container;
