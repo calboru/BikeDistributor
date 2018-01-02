@@ -21,19 +21,19 @@ namespace BikeDistributor.Services.Data
        
     {
         [Dependency]
-        public IRepository Repository { get; set; }
+        public virtual IRepository Repository { get; set; }
 
         [Dependency]
-        public IEntityMappingService EntityMapperService { get; set; }
+        public virtual IEntityMappingService EntityMapperService { get; set; }
 
-        public TModel GetOne<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null) where TModel : class where TEntity : class, IEntity
+        public virtual TModel GetOne<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = Repository.GetOne(filter, includeProperties);
             var result = EntityMapperService.Map<TEntity, TModel>(dbResult);
             return result;
         }
 
-        public IEnumerable<TModel> GetAll<TModel, TEntity>(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null, int? skip = null,
+        public virtual IEnumerable<TModel> GetAll<TModel, TEntity>(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null, int? skip = null,
             int? take = null) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = Repository.GetAll(orderBy, includeProperties, skip, take);
@@ -41,7 +41,7 @@ namespace BikeDistributor.Services.Data
             return result;
         }
 
-        public async Task<IEnumerable<TModel>> GetAllAsync<TModel, TEntity>(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null, int? skip = null,
+        public virtual async Task<IEnumerable<TModel>> GetAllAsync<TModel, TEntity>(Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null, int? skip = null,
             int? take = null) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = await Repository.GetAllAsync<TEntity>(orderBy, includeProperties, skip, take);
@@ -49,7 +49,7 @@ namespace BikeDistributor.Services.Data
             return result;
         }
 
-        public IEnumerable<TModel> Get<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null,
+        public virtual IEnumerable<TModel> Get<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null,
             int? skip = null, int? take = null) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = Repository.Get<TEntity>(filter, orderBy, includeProperties, skip, take);
@@ -57,7 +57,7 @@ namespace BikeDistributor.Services.Data
             return result;
         }
 
-        public async Task<IEnumerable<TModel>> GetAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null,
+        public virtual async Task<IEnumerable<TModel>> GetAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null,
             int? skip = null, int? take = null) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = await Repository.GetAsync<TEntity>(filter, orderBy, includeProperties, skip, take);
@@ -65,62 +65,62 @@ namespace BikeDistributor.Services.Data
             return result;
         }
 
-        public async Task<TModel> GetOneAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null) where TModel : class where TEntity : class, IEntity
+        public virtual async Task<TModel> GetOneAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, string includeProperties = null) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = await Repository.GetOneAsync(filter, includeProperties);
             var result = EntityMapperService.Map<TEntity, TModel>(dbResult);
             return result;
         }
 
-        public TModel GetFirst<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null) where TModel : class where TEntity : class, IEntity
+        public virtual TModel GetFirst<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = Repository.GetFirst(filter, orderBy, includeProperties);
             var result = EntityMapperService.Map<TEntity, TModel>(dbResult);
             return result;
         }
 
-        public async Task<TModel> GetFirstAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null) where TModel : class where TEntity : class, IEntity
+        public virtual async Task<TModel> GetFirstAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null, Func<IQueryable<TEntity>, IOrderedQueryable<TEntity>> orderBy = null, string includeProperties = null) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = await Repository.GetFirstAsync(filter, orderBy, includeProperties);
             var result = EntityMapperService.Map<TEntity, TModel>(dbResult);
             return result;
         }
 
-        public TModel GetById<TModel, TEntity>(object id) where TModel : class where TEntity : class, IEntity
+        public virtual TModel GetById<TModel, TEntity>(object id) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = Repository.GetById<TEntity>(id);
             var result = EntityMapperService.Map<TEntity, TModel>(dbResult);
             return result;
         }
 
-        public async Task<TModel> GetByIdAsync<TModel, TEntity>(object id) where TModel : class where TEntity : class, IEntity
+        public virtual async Task<TModel> GetByIdAsync<TModel, TEntity>(object id) where TModel : class where TEntity : class, IEntity
         {
             var dbResult = await Repository.GetByIdAsync<TEntity>(id);
             var result = EntityMapperService.Map<TEntity, TModel>(dbResult);
             return result;
         }
 
-        public int GetCount<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null) where TModel : class where TEntity : class, IEntity
+        public virtual int GetCount<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null) where TModel : class where TEntity : class, IEntity
         {
             return Repository.GetCount(filter);
         }
 
-        public async Task<int> GetCountAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null) where TModel : class where TEntity : class, IEntity
+        public virtual async Task<int> GetCountAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null) where TModel : class where TEntity : class, IEntity
         {
             return await Repository.GetCountAsync(filter);
         }
 
-        public bool GetExists<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null) where TModel : class where TEntity : class, IEntity
+        public virtual bool GetExists<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null) where TModel : class where TEntity : class, IEntity
         {
             return Repository.GetExists(filter);
         }
 
-        public async Task<bool> GetExistsAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null) where TModel : class where TEntity : class, IEntity
+        public virtual async Task<bool> GetExistsAsync<TModel, TEntity>(Expression<Func<TEntity, bool>> filter = null) where TModel : class where TEntity : class, IEntity
         {
             return await Repository.GetExistsAsync(filter);
         }
 
-        public void Create<TModel, TEntity>(TModel model, string createdBy = null) where TModel : class where TEntity : class, IEntity
+        public virtual void Create<TModel, TEntity>(TModel model, string createdBy = null) where TModel : class where TEntity : class, IEntity
         {
             try
             {
@@ -136,30 +136,30 @@ namespace BikeDistributor.Services.Data
             
         }
 
-        public void Update<TModel, TEntity>(TModel model, string modifiedBy = null) where TModel : class where TEntity : class, IEntity
+        public virtual void Update<TModel, TEntity>(TModel model, string modifiedBy = null) where TModel : class where TEntity : class, IEntity
         {
             var entity = EntityMapperService.Map<TModel, TEntity>(model);
             Repository.Update(entity, modifiedBy);
         }
 
-        public void Delete<TEntity>(object id) where TEntity : class, IEntity
+        public virtual void Delete<TEntity>(object id) where TEntity : class, IEntity
         {
             Repository.Delete<TEntity>(id);
         }
 
     
-        public void Delete<TModel, TEntity>(TModel model) where TModel : class where TEntity : class, IEntity
+        public virtual void Delete<TModel, TEntity>(TModel model) where TModel : class where TEntity : class, IEntity
         {
             var entity = EntityMapperService.Map<TModel, TEntity>(model);
             Repository.Delete(entity);
         }
 
-        public void Save()
+        public virtual void Save()
         {
            Repository.Save();
         }
 
-        public Task SaveAsync()
+        public virtual Task SaveAsync()
         {
             return  Repository.SaveAsync();
         }

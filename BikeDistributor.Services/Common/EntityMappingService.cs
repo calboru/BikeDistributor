@@ -22,7 +22,7 @@ namespace BikeDistributor.Services.Common
             _mapper = config.CreateMapper();
         }
 
-        public TDestination Map<TSource, TDestination>(TSource source) where TSource : class where TDestination : class
+        public virtual TDestination Map<TSource, TDestination>(TSource source) where TSource : class where TDestination : class
         {
             return _mapper.Map<TSource, TDestination>(source);
         }

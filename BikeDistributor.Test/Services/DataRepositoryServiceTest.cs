@@ -34,7 +34,6 @@ namespace BikeDistributor.Test.Services
                 Repository = _repositoryMock.Object,
                 EntityMapperService = _mappingServiceMock.Object
             };
-
         }
 
         [TestMethod]

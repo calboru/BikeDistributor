@@ -14,17 +14,17 @@ using BikeDistributor.Services.Constants;
 
 namespace BikeDistributor.Services
 {
-    public class DiscountService : BaseService, IDiscountService
+    public   class DiscountService : BaseService, IDiscountService
     {
 
         private readonly IDataRepositoryService _dataRepositoryService;
 
-        public DiscountService(IDataRepositoryService dataRepositoryService)
+        public  DiscountService(IDataRepositoryService dataRepositoryService)
         {
             _dataRepositoryService = dataRepositoryService;
         }
 
-        public OrderModel CalculateDiscount(OrderModel orderModel)
+        public virtual OrderModel CalculateDiscount(OrderModel orderModel)
         {
             if (orderModel == null)
             {
@@ -45,7 +45,7 @@ namespace BikeDistributor.Services
             return orderModel;
         }
      
-        public OrderLineModel ApplyDiscount(OrderLineModel orderLineModel, DiscountCodeModel discountCodeModel)
+        public virtual OrderLineModel ApplyDiscount(OrderLineModel orderLineModel, DiscountCodeModel discountCodeModel)
         {
 
             switch (discountCodeModel.Flag.ToLower())

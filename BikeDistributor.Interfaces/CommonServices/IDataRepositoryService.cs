@@ -73,7 +73,7 @@ namespace BikeDistributor.Interfaces.CommonServices
             string includeProperties = null)
             where TEntity : class, IEntity
             where TModel : class;
-
+        
         TModel GetById<TModel, TEntity>(object id)
             where TEntity : class, IEntity
             where TModel : class;

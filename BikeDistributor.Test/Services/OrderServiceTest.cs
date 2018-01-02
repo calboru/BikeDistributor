@@ -18,9 +18,6 @@ namespace BikeDistributor.Test.Services
     [TestClass]
     public class OrderServiceTest : BaseTest
     {
-        private Mock<IRepository> _repositoryMock;
-        private Mock<IEntityMappingService> _mappingServiceMock;
-
         private Mock<IDataRepositoryService> _dataRepositoryService;
         private Mock<IDiscountService> _discountService;
         private IOrderService _orderService;
@@ -29,15 +26,9 @@ namespace BikeDistributor.Test.Services
         public void Initialize()
         {
 
-            _repositoryMock = new Mock<IRepository>();
-            _mappingServiceMock = new Mock<IEntityMappingService>();
             _dataRepositoryService = new Mock<IDataRepositoryService>();
-
-
-            _dataRepositoryService.Object.Repository = _repositoryMock.Object;
-            _dataRepositoryService.Object.EntityMapperService = _mappingServiceMock.Object;
-
             _discountService = new Mock<IDiscountService>();
+
             _orderService = new OrderService(_dataRepositoryService.Object, _discountService.Object)
             {
                 LogService = LogServiceMock.Object
@@ -86,15 +77,12 @@ namespace BikeDistributor.Test.Services
                   }
 
             };
-            
+             
             //Act
+            _dataRepositoryService.Setup(y => y.GetOne<OrderModel, Order>(It.IsAny<Expression <Func<Order, bool>>>(), null)).Returns(() => orderModel);
+            _discountService.Setup(x => x.CalculateDiscount(It.IsAny<OrderModel>())).Returns(() => orderModel);
 
-            _repositoryMock.Setup(x => x.GetOne(It.IsAny<Expression<Func<Order, bool>>>(), "")).Returns(new Order());
-            
-            _dataRepositoryService.Setup(y => y.GetOne<OrderModel, Order>(It.IsAny<Expression <Func<Order, bool>>>(), "")).Returns(() => orderModel);
             var result =  _orderService.GetOne(x => x.Id == 1);
-
-
             Assert.IsNotNull(result);
         }
     }

@@ -25,7 +25,7 @@ namespace BikeDistributor.Services
             _discountService = discountService;
         }
 
-        public OrderModel CalculateTotals(OrderModel orderModel)
+        public virtual OrderModel CalculateTotals(OrderModel orderModel)
         {
            var location = orderModel.OrderedBy.Location.SingleOrDefault(x => x.Type == "Billing");
             if (location == null)
@@ -53,7 +53,7 @@ namespace BikeDistributor.Services
             return orderModel;
         }
 
-        public OrderModel GetOne(Expression<Func<Order, bool>> filter = null, string includeProperties = null)
+        public virtual OrderModel GetOne(Expression<Func<Order, bool>> filter = null, string includeProperties = null)
         {
            var dbResult =  _dataRepositoryService.GetOne<OrderModel, Order>(filter, includeProperties);
            var discountedResult = _discountService.CalculateDiscount(dbResult);
