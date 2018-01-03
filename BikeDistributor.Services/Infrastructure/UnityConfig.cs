@@ -33,10 +33,22 @@ namespace BikeDistributor.Services.Infrastructure
             container.RegisterType<IRandomValueService, RandomValueService>();
             container.RegisterType<IDataRepositoryService, DataRepositoryService>();
             container.RegisterType<IOrderService, OrderService>();
-            container.RegisterType<IReceiptService, HtmlReceiptService>();
-            container.RegisterType<IReceiptContentService, OrderedReceiptListService>("OrderedList");
+            container.RegisterType<IHtmlReceiptService, HtmlReceiptService>();
+            container.RegisterType<IReceiptContentService, OrderedReceiptListService>(); //Default fallback
             container.RegisterType<IReceiptContentService, TableReceiptListService>("TableList");
-         
+
+            container.RegisterType<IHtmlReceiptService, HtmlReceiptService>("OrderedList", 
+                new InjectionConstructor(
+                    new ResolvedParameter<IDataRepositoryService>(),  
+                    new ResolvedParameter<IReceiptContentService>())
+                );
+
+            container.RegisterType<IHtmlReceiptService, HtmlReceiptService>("TableList",
+                new InjectionConstructor(
+                    new ResolvedParameter<IDataRepositoryService>(),
+                    new ResolvedParameter<IReceiptContentService>("TableList"))
+            );
+
             Container = container;
             return container;
         }

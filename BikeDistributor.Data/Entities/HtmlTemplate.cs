@@ -7,7 +7,7 @@ using BikeDistributor.Data.Common;
 
 namespace BikeDistributor.Data.Entities
 {
-    public class Template: BaseEntity<int>
+    public class HtmlTemplate: BaseEntity<int>
     {
         public string Type { get; set; }
         public string Content { get; set; }

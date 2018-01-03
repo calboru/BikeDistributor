@@ -8,7 +8,7 @@ using BikeDistributor.Shared.Interfaces;
 
 namespace BikeDistributor.Models
 {
-    public class TemplateModel: BaseModel<int>
+    public class HtmlTemplateModel: BaseModel<int>
     {
         public string Type { get; set; }
         public string Content { get; set; }

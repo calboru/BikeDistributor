@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BikeDistributor.Interfaces.Services
 {
-    public interface IReceiptService
+    public interface IHtmlReceiptService
     {
-        
-
+        string Output(int orderId, int templateId, string token);
     }
 }

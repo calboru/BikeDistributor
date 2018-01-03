@@ -16,6 +16,8 @@ namespace BikeDistributor.Data.Context
 
         public DbSet<OrderLine> OrderLines { get; set; }
 
+        public DbSet<HtmlTemplate> HtmlTemplates { get; set; }
+
         public BikeDistributorContext() :base("name=CompactDB")
         {
         }

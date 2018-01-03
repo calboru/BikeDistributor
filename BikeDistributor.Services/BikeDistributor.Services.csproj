@@ -88,7 +88,7 @@
     <Compile Include="OrderService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Infrastructure\UnityConfig.cs" />
-    <Compile Include="HtmlReceiptService.cs" />
+    <Compile Include="Receipt\HtmlReceiptService.cs" />
     <Compile Include="Receipt\OrderedReceiptListService.cs" />
     <Compile Include="Receipt\TableReceiptListService.cs" />
   </ItemGroup>

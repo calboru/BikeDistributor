@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using BikeDistributor.Models;
 
-namespace BikeDistributor.Test.Services
+namespace BikeDistributor.Test
 {
     public static  class DummyData
     {
