@@ -38,46 +38,47 @@ namespace BikeDistributor.Services
                 return orderModel;
             }
 
-            var calculatedOrderLines = new List<OrderLineModel>();
-                calculatedOrderLines.AddRange(orderModel.Products.Select(orderLine => ApplyDiscount(orderLine, orderModel.DiscountCode)));
-
-            orderModel.Products = calculatedOrderLines;
+            foreach (var orderLineModel in orderModel.Products)
+            {
+                orderLineModel.Product.DiscountedPrice = ApplyDiscount(orderLineModel, orderModel.DiscountCode);
+                orderModel.DiscountTotal += orderLineModel.Product.Msrp - orderLineModel.Product.DiscountedPrice;
+            }
+           
             return orderModel;
         }
      
-        public virtual OrderLineModel ApplyDiscount(OrderLineModel orderLineModel, DiscountCodeModel discountCodeModel)
+        public virtual double ApplyDiscount(OrderLineModel orderLineModel, DiscountCodeModel discountCodeModel)
         {
-
             switch (discountCodeModel.Flag.ToLower())
             {
                 case ">=":
                     if (orderLineModel.Quantity >= discountCodeModel.QuantityRange1)
                     {
-                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
+                        return  orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
                     break;
                 case "<=":
                     if (orderLineModel.Quantity <= discountCodeModel.QuantityRange1)
                     {
-                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
+                        return orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
                     break;
                 case ">":
                     if (orderLineModel.Quantity > discountCodeModel.QuantityRange1)
                     {
-                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
+                        return orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
                     break;
                 case "<":
                     if (orderLineModel.Quantity < discountCodeModel.QuantityRange1)
                     {
-                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
+                        return orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
                     break;
                 case "range":
                     if (orderLineModel.Quantity >= discountCodeModel.QuantityRange1 && orderLineModel.Quantity <= discountCodeModel.QuantityRange2)
                     {
-                        orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
+                        return orderLineModel.Product.Msrp * discountCodeModel.DiscountRate;
                     }
 
                     break;
@@ -90,7 +91,7 @@ namespace BikeDistributor.Services
 
             }
 
-            return orderLineModel;
+            return orderLineModel.Product.Msrp;
         }
     }
 }

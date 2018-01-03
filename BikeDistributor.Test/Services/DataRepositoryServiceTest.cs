@@ -116,7 +116,6 @@ namespace BikeDistributor.Test.Services
 
             };
 
-
             //Act
             _repositoryMock.Setup(x => x.GetOne(It.IsAny<Expression<Func<Order, bool>>>(), null)).Returns(order);
             _mappingServiceMock.Setup(x => x.Map<Order, OrderModel>(order)).Returns(orderModel);

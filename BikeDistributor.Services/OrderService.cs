@@ -27,28 +27,34 @@ namespace BikeDistributor.Services
 
         public virtual OrderModel CalculateTotals(OrderModel orderModel)
         {
-           var location = orderModel.OrderedBy.Location.SingleOrDefault(x => x.Type == "Billing");
+            if (orderModel.OrderedBy.Location == null)
+            {
+                var err = $"Location info was not found for {orderModel.OrderedBy.CompanyName}";
+                LogService.Error(err);
+                throw new Exception(err);
+            }
+
+            var location = orderModel.OrderedBy.Location.SingleOrDefault(x => x.Type == "Billing");
             if (location == null)
             {
                 var err = $"Billing info was not found for {orderModel.OrderedBy.CompanyName}";
                 LogService.Error(err);
                 throw new Exception(err);
             }
+
             foreach (var orderLineModel in orderModel.Products)
             {
-                if (orderLineModel.Product.DiscountedPrice < 1)
+                if (orderLineModel.Product.DiscountedPrice.Equals(0))
                 {
                     orderLineModel.Product.DiscountedPrice = orderLineModel.Product.Msrp;
                 }
 
                 orderLineModel.Product.TaxedPrice = orderLineModel.Product.DiscountedPrice * (1 + location.TaxRate);
+
+                orderModel.TaxTotal += orderLineModel.Product.TaxedPrice * orderLineModel.Quantity -
+                                       orderLineModel.Product.DiscountedPrice;
+                orderModel.SubTotal += orderLineModel.Product.TaxedPrice * orderLineModel.Quantity;
             }
-
-
-            orderModel.DiscountTotal = orderModel.Products.Sum(x => x.Product.Msrp - x.Product.DiscountedPrice  * x.Quantity);
-            orderModel.TaxTotal = orderModel.Products.Sum(x => x.Product.TaxedPrice * x.Quantity - x.Product.DiscountedPrice);
-
-            orderModel.SubTotal = orderModel.Products.Sum(x => x.Product.TaxedPrice * x.Quantity);
 
             return orderModel;
         }
@@ -58,8 +64,7 @@ namespace BikeDistributor.Services
            var dbResult =  _dataRepositoryService.GetOne<OrderModel, Order>(filter, includeProperties);
            var discountedResult = _discountService.CalculateDiscount(dbResult);
            var calculatedResult = CalculateTotals(discountedResult);
-
-            return calculatedResult;
+           return calculatedResult;
         }
 
     }

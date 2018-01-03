@@ -12,6 +12,6 @@ namespace BikeDistributor.Interfaces.Services
     public interface IDiscountService
     {
         OrderModel CalculateDiscount(OrderModel orderModel);
-        OrderLineModel ApplyDiscount(OrderLineModel orderLineModel, DiscountCodeModel discountCodeModel);
+        double ApplyDiscount(OrderLineModel orderLineModel, DiscountCodeModel discountCodeModel);
     }
 }
