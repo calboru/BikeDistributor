@@ -11,18 +11,34 @@ namespace BikeDistributor.Services
 {
     public class JsonSerializerService: BaseService, IJsonSerializerService
     {
-        public List<T> DeserializeObject<T>(string source) where T : class
+
+        public T DeserializeObject<T>(string source) where T : class
         {
             try
             {
-                return JsonConvert.DeserializeObject<List<T>>(source);
+                return JsonConvert.DeserializeObject<T>(source);
             }
             catch (Exception e)
             {
                 LogService.Error(e);
                 throw;
             }
-            
+
         }
+
+        public string SerializeObject(object source)
+        {
+            try
+            {
+                return JsonConvert.SerializeObject(source);
+            }
+            catch (Exception e)
+            {
+                LogService.Error(e);
+                throw;
+            }
+
+        }
+
     }
 }

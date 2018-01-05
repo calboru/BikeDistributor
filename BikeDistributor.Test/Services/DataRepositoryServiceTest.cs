@@ -63,7 +63,7 @@ namespace BikeDistributor.Test.Services
                         }
                     }
                 },
-                Products = new List<OrderLineModel>()
+                OrderLines = new List<OrderLineModel>()
                 {
                     new OrderLineModel()
                     {
@@ -101,7 +101,7 @@ namespace BikeDistributor.Test.Services
                         }
                     }
                 },
-                Products = new List<OrderLine>()
+                OrderLines = new List<OrderLine>()
                 {
                     new OrderLine()
                     {

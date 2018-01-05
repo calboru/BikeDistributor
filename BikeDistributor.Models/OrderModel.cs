@@ -16,7 +16,7 @@ namespace BikeDistributor.Models
         public double TaxTotal { get; set; }
         public double SubTotal { get; set; }
 
-        public virtual ICollection<OrderLineModel> Products { get; set; }
+        public virtual ICollection<OrderLineModel> OrderLines { get; set; }
 
     }
 }

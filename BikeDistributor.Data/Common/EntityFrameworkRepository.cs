@@ -54,6 +54,11 @@ namespace BikeDistributor.Data.Common
             dbSet.Remove(entity);
         }
 
+        public void ExecuteSql(string sql)
+        {
+            Context.Database.ExecuteSqlCommand(sql);
+        }
+
         public virtual void Save()
         {
             try

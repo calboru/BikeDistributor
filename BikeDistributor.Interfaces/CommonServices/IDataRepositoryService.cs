@@ -115,6 +115,8 @@ namespace BikeDistributor.Interfaces.CommonServices
             where TEntity : class, IEntity
             where TModel : class;
 
+        void ExecuteSql(string sql);
+
         void Save();
 
         Task SaveAsync();

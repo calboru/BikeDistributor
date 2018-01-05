@@ -164,6 +164,10 @@
     <Compile Include="Migrations\201801030337497_Added HtmlTemplate model.Designer.cs">
       <DependentUpon>201801030337497_Added HtmlTemplate model.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801041822571_Renaming ordermodel.products to ordermodel.orderlines.cs" />
+    <Compile Include="Migrations\201801041822571_Renaming ordermodel.products to ordermodel.orderlines.Designer.cs">
+      <DependentUpon>201801041822571_Renaming ordermodel.products to ordermodel.orderlines.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\Product.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -207,6 +211,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801030337497_Added HtmlTemplate model.resx">
       <DependentUpon>201801030337497_Added HtmlTemplate model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801041822571_Renaming ordermodel.products to ordermodel.orderlines.resx">
+      <DependentUpon>201801041822571_Renaming ordermodel.products to ordermodel.orderlines.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

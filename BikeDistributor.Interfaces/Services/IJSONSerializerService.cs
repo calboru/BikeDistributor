@@ -8,6 +8,7 @@ namespace BikeDistributor.Interfaces.Services
 {
     public interface IJsonSerializerService
     {
-        List<T> DeserializeObject<T>(string source) where T : class;
+        T DeserializeObject<T>(string source) where T : class;
+        string SerializeObject(object source);
     }
 }

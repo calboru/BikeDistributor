@@ -163,5 +163,9 @@ namespace BikeDistributor.Services.Data
         {
             return  Repository.SaveAsync();
         }
+        public virtual void ExecuteSql(string sql)
+        {
+            Repository.ExecuteSql(sql);
+        }
     }
 }

@@ -19,13 +19,13 @@ namespace BikeDistributor.Test.Services
     public class OrderedReceiptListServiceTest:BaseTest
     {
         private Mock<IOrderService> _orderServiceMock;
-        private OrderedReceiptListService _orderedReceiptListService;
+        private OrderedtListReceiptContentService _orderedReceiptListService;
         
         [TestInitialize]
         public void Initialize()
         {
             _orderServiceMock = new Mock<IOrderService>();
-            _orderedReceiptListService = new OrderedReceiptListService(_orderServiceMock.Object)
+            _orderedReceiptListService = new OrderedtListReceiptContentService(_orderServiceMock.Object)
             {
                 LogService = LogServiceMock.Object
             };

@@ -21,6 +21,8 @@ namespace BikeDistributor.Data.Interfaces.Common
         void Delete<TEntity>(TEntity entity)
             where TEntity : class, IEntity;
 
+        void ExecuteSql(string sql);
+
         void Save();
 
         Task SaveAsync();

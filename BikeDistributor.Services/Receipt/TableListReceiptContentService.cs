@@ -10,30 +10,38 @@ using BikeDistributor.Services.Common;
 
 namespace BikeDistributor.Services.Receipt
 {
-    public class TableReceiptListService: BaseService, IReceiptContentService
+    public class TableListReceiptContentService: BaseService, IReceiptContentService
     {
         private readonly IOrderService _orderService;
 
-        public TableReceiptListService(IOrderService orderService)
+        public TableListReceiptContentService(IOrderService orderService)
         {
             _orderService = orderService;
         }
         public string Generate(int orderId, string classForOrderLineContainer, string classForOrderLine,
             string classForSubTotalContainer, string classForSubTotalLines)
         {
-            var sb = new StringBuilder();
-            var orderModel = _orderService.GetOne(o => o.Id == orderId);
+            try
+            {
+                var sb = new StringBuilder();
+                var orderModel = _orderService.GetOne(o => o.Id == orderId);
 
-            sb.Append($"<table class='{classForOrderLineContainer}'>");
-            PrintHeader(sb);
+                sb.Append($"<table class='{classForOrderLineContainer}'>");
+                PrintHeader(sb);
 
-            PrintContent(classForOrderLine, orderModel, sb);
+                PrintContent(classForOrderLine, orderModel, sb);
 
-            sb.Append("</table>");
+                sb.Append("</table>");
 
-            PrintSubTotals(classForSubTotalContainer, classForSubTotalLines, sb, orderModel);
+                PrintSubTotals(classForSubTotalContainer, classForSubTotalLines, sb, orderModel);
 
-            return sb.ToString();
+                return sb.ToString();
+            }
+            catch (Exception e)
+            {
+                LogService.Error(e);
+                throw;
+            }
         }
 
         private static void PrintSubTotals(string classForSubTotalContainer, string classForSubTotalLines, StringBuilder sb,
@@ -58,7 +66,7 @@ namespace BikeDistributor.Services.Receipt
 
         private static void PrintContent(string classForOrderLine, OrderModel orderModel, StringBuilder sb)
         {
-            foreach (var orderLine in orderModel.Products)
+            foreach (var orderLine in orderModel.OrderLines)
             {
                 sb.Append($"<tr class='{classForOrderLine}'>");
                 sb.Append($"<td>{orderLine.Product.Sku}</td>");
@@ -67,6 +75,7 @@ namespace BikeDistributor.Services.Receipt
                 sb.Append($"<td>{orderLine.Product.Model}</td>");
                 sb.Append($"<td>{orderLine.Product.Msrp}</td>");
                 sb.Append($"<td>{orderLine.Product.DiscountedPrice}</td>");
+                sb.Append($"<td>{orderLine.Quantity}</td>");
                 sb.Append("</tr>");
             }
         }
@@ -80,6 +89,7 @@ namespace BikeDistributor.Services.Receipt
             sb.Append("<th>Model</th>");
             sb.Append("<th>Msrp</th>");
             sb.Append("<th>Discounted Price</th>");
+            sb.Append("<th>Quantity</th>");
             sb.Append("</tr>");
         }
     }

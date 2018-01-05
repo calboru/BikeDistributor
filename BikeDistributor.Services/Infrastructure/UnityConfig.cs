@@ -34,8 +34,9 @@ namespace BikeDistributor.Services.Infrastructure
             container.RegisterType<IDataRepositoryService, DataRepositoryService>();
             container.RegisterType<IOrderService, OrderService>();
             container.RegisterType<IHtmlReceiptService, HtmlReceiptService>();
-            container.RegisterType<IReceiptContentService, OrderedReceiptListService>(); //Default fallback
-            container.RegisterType<IReceiptContentService, TableReceiptListService>("TableList");
+            container.RegisterType<IReceiptContentService, OrderedtListReceiptContentService>(); //Default fallback
+            container.RegisterType<IReceiptContentService, TableListReceiptContentService>("TableList");
+            container.RegisterType<IReceiptContentService, JsonReceiptContentService>("JsonList");
 
             container.RegisterType<IHtmlReceiptService, HtmlReceiptService>("OrderedList", 
                 new InjectionConstructor(
@@ -47,6 +48,12 @@ namespace BikeDistributor.Services.Infrastructure
                 new InjectionConstructor(
                     new ResolvedParameter<IDataRepositoryService>(),
                     new ResolvedParameter<IReceiptContentService>("TableList"))
+            );
+
+            container.RegisterType<IHtmlReceiptService, HtmlReceiptService>("JsonList",
+                new InjectionConstructor(
+                    new ResolvedParameter<IDataRepositoryService>(),
+                    new ResolvedParameter<IReceiptContentService>("JsonList"))
             );
 
             Container = container;

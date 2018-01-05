@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +14,7 @@ namespace BikeDistributor.Data.Entities
         public virtual DateTime OrderDate { get; set; }
         public virtual BusinessEntity OrderedBy { get; set; }
         public virtual DiscountCode DiscountCode { get; set; }
-        public virtual ICollection<OrderLine> Products { get; set; }
+        public virtual ICollection<OrderLine> OrderLines { get; set; }
 
     }
 }

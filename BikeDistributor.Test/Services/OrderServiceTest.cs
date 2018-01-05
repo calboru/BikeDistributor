@@ -64,7 +64,7 @@ namespace BikeDistributor.Test.Services
                         }
                     }
                 },
-                Products = new List<OrderLineModel>()
+                OrderLines = new List<OrderLineModel>()
                 {
                     new OrderLineModel()
                     {
@@ -115,7 +115,7 @@ namespace BikeDistributor.Test.Services
                         }
                     }
                 },
-                Products = new List<OrderLineModel>()
+                OrderLines = new List<OrderLineModel>()
                 {
                     new OrderLineModel()
                     {
@@ -137,8 +137,8 @@ namespace BikeDistributor.Test.Services
             //System and method under test
             var result = _orderService.CalculateTotals(orderModel);
             
-            var taxedPrice = result.Products.ToList()[0].Product.TaxedPrice;
-            var discountedPrice = result.Products.ToList()[0].Product.DiscountedPrice;
+            var taxedPrice = result.OrderLines.ToList()[0].Product.TaxedPrice;
+            var discountedPrice = result.OrderLines.ToList()[0].Product.DiscountedPrice;
 
             Assert.IsTrue((int)taxedPrice == 110);
             Assert.IsTrue((int)discountedPrice == 100); //No discount provided in line #134 therefore Msrp should be returned
@@ -170,7 +170,7 @@ namespace BikeDistributor.Test.Services
                     CompanyName = "Company1",
                     Location = null //Null should throw an exception
                 },
-                Products = new List<OrderLineModel>()
+                OrderLines = new List<OrderLineModel>()
                 {
                     new OrderLineModel()
                     {
@@ -215,7 +215,7 @@ namespace BikeDistributor.Test.Services
                     CompanyName = "Company1",
                     Location = new List<LocationModel>() //Empty location
                 },
-                Products = new List<OrderLineModel>()
+                OrderLines = new List<OrderLineModel>()
                 {
                     new OrderLineModel()
                     {

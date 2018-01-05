@@ -42,7 +42,7 @@ namespace BikeDistributor.Services
                 throw new Exception(err);
             }
 
-            foreach (var orderLineModel in orderModel.Products)
+            foreach (var orderLineModel in orderModel.OrderLines)
             {
                 if (orderLineModel.Product.DiscountedPrice.Equals(0))
                 {
@@ -51,8 +51,9 @@ namespace BikeDistributor.Services
 
                 orderLineModel.Product.TaxedPrice = orderLineModel.Product.DiscountedPrice * (1 + location.TaxRate);
 
-                orderModel.TaxTotal += orderLineModel.Product.TaxedPrice * orderLineModel.Quantity -
-                                       orderLineModel.Product.DiscountedPrice;
+                orderModel.TaxTotal += (orderLineModel.Product.TaxedPrice - orderLineModel.Product.DiscountedPrice) * orderLineModel.Quantity;
+                                     
+                                        
                 orderModel.SubTotal += orderLineModel.Product.TaxedPrice * orderLineModel.Quantity;
             }
 
@@ -66,6 +67,21 @@ namespace BikeDistributor.Services
            var calculatedResult = CalculateTotals(discountedResult);
            return calculatedResult;
         }
+
+        public virtual void Create(OrderModel orderModel, string createdBy = null)
+        {
+            try
+            {
+                _dataRepositoryService.Create<OrderModel,Order>(orderModel, createdBy);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+                throw;
+            }
+        }
+
+
 
     }
 }

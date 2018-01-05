@@ -13,5 +13,6 @@ namespace BikeDistributor.Interfaces.Services
     {
         OrderModel CalculateTotals(OrderModel orderModel);
         OrderModel GetOne(Expression<Func<Order, bool>> filter = null, string includeProperties = null);
+        void Create(OrderModel orderModel, string createdBy = null);
     }
 }

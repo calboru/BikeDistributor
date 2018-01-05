@@ -12,11 +12,11 @@ using BikeDistributor.Services.Common;
 
 namespace BikeDistributor.Services.Receipt
 {
-    public  class OrderedReceiptListService:BaseService, IReceiptContentService
+    public  class OrderedtListReceiptContentService:BaseService, IReceiptContentService
     {
         private readonly IOrderService _orderService;
 
-        public OrderedReceiptListService(IOrderService orderService)
+        public OrderedtListReceiptContentService(IOrderService orderService)
         {
             _orderService = orderService;
         }
@@ -28,14 +28,22 @@ namespace BikeDistributor.Services.Receipt
             string classForSubTotalContainer, 
             string classForSubTotalLines)
         {
-            var sb = new StringBuilder();
-            var orderModel = _orderService.GetOne(o => o.Id == orderId);
+            try
+            {
+                var sb = new StringBuilder();
+                var orderModel = _orderService.GetOne(o => o.Id == orderId);
 
-            PrintOrderLines(sb, orderModel, classForOrderLineContainer, classForOrderLine, classForSubTotalContainer, classForSubTotalLines);
+                PrintOrderLines(sb, orderModel, classForOrderLineContainer, classForOrderLine, classForSubTotalContainer, classForSubTotalLines);
 
-            PrintSubTotals(classForSubTotalContainer, classForSubTotalLines, sb, orderModel);
+                PrintSubTotals(classForSubTotalContainer, classForSubTotalLines, sb, orderModel);
 
-            return sb.ToString();
+                return sb.ToString();
+            }
+            catch (Exception e)
+            {
+                LogService.Error(e);
+                throw;
+            }
         }
 
         private static void PrintSubTotals(string classForSubTotalContainer, string classForSubTotalLines, StringBuilder sb,
@@ -62,11 +70,11 @@ namespace BikeDistributor.Services.Receipt
         {
             sb.Append($"<ul class='{ulClassForOrderLine}'>");
 
-            foreach (var orderLineModel in orderModel.Products)
+            foreach (var orderLineModel in orderModel.OrderLines)
             {
                 sb.Append($"<li class='{liClassForOrderLine}'>");
                 var receiptLine =
-                    $"SKU:{orderLineModel.Product.Sku}  Brand:{orderLineModel.Product.Brand} Make: {orderLineModel.Product.Make} Model:{orderLineModel.Product.Model} Msrp:{orderLineModel.Product.Msrp} Discounted Price:{orderLineModel.Product.DiscountedPrice} ";
+                    $"SKU:{orderLineModel.Product.Sku}  Brand:{orderLineModel.Product.Brand} Make: {orderLineModel.Product.Make} Model:{orderLineModel.Product.Model} Msrp:{orderLineModel.Product.Msrp} Discounted Price:{orderLineModel.Product.DiscountedPrice} Quantity:{orderLineModel.Quantity}";
                sb.Append(receiptLine);
                 sb.Append("</li>");
             }

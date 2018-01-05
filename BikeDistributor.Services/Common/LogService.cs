@@ -29,7 +29,7 @@ namespace BikeDistributor.Services.Common
         {
             if (entity != null)
             {
-                Console.Write(
+                Console.WriteLine(
                     $@"{entity.ToString()} has been created by succesfully");
             }
         }

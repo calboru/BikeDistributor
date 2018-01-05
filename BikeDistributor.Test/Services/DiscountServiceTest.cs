@@ -16,7 +16,6 @@ namespace BikeDistributor.Test.Services
     [TestClass]
     public class DiscountServiceTest : BaseTest
     {
-        private Mock<IDataRepositoryService> _dataRepositoryServiceMock;
         private DiscountService _discountService;
         private OrderModel _orderModel;
       
@@ -24,17 +23,16 @@ namespace BikeDistributor.Test.Services
         public void TestInitialize()
         {
             
-            _dataRepositoryServiceMock = new Mock<IDataRepositoryService>();
 
             _discountService =
-                new DiscountService(_dataRepositoryServiceMock.Object) {LogService = LogServiceMock.Object};
+                new DiscountService() {LogService = LogServiceMock.Object};
         }
 
         public void CreateOrderModel(int productQuantity)
         {
             _orderModel = new OrderModel()
             {
-                Products = new List<OrderLineModel>()
+                OrderLines = new List<OrderLineModel>()
                 {
                     new OrderLineModel()
                     {
@@ -65,7 +63,7 @@ namespace BikeDistributor.Test.Services
             //Act
             var result = _discountService.CalculateDiscount(_orderModel);
 
-            var discountedPrice = result.Products.ToList()[0].Product.DiscountedPrice;
+            var discountedPrice = result.OrderLines.ToList()[0].Product.DiscountedPrice;
 
 
             //Assert
@@ -89,7 +87,7 @@ namespace BikeDistributor.Test.Services
             //Act
             var result = _discountService.CalculateDiscount(_orderModel);
 
-            var discountedPrice = result.Products.ToList()[0].Product.DiscountedPrice;
+            var discountedPrice = result.OrderLines.ToList()[0].Product.DiscountedPrice;
 
 
             //Assert
@@ -114,7 +112,7 @@ namespace BikeDistributor.Test.Services
             //Act
             var result = _discountService.CalculateDiscount(_orderModel);
 
-            var discountedPrice = result.Products.ToList()[0].Product.DiscountedPrice;
+            var discountedPrice = result.OrderLines.ToList()[0].Product.DiscountedPrice;
 
 
             //Assert
@@ -138,7 +136,7 @@ namespace BikeDistributor.Test.Services
             //Act
             var result = _discountService.CalculateDiscount(_orderModel);
 
-            var discountedPrice = result.Products.ToList()[0].Product.DiscountedPrice;
+            var discountedPrice = result.OrderLines.ToList()[0].Product.DiscountedPrice;
 
 
             //Assert
@@ -165,7 +163,7 @@ namespace BikeDistributor.Test.Services
             //Act
             var result = _discountService.CalculateDiscount(_orderModel);
 
-            var discountedPrice = result.Products.ToList()[0].Product.DiscountedPrice;
+            var discountedPrice = result.OrderLines.ToList()[0].Product.DiscountedPrice;
 
 
             //Assert

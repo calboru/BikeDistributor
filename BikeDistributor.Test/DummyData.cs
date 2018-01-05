@@ -36,7 +36,7 @@ namespace BikeDistributor.Test
                         }
                     }
                 },
-                Products = new List<OrderLineModel>()
+                OrderLines = new List<OrderLineModel>()
                 {
                     new OrderLineModel()
                     {

@@ -17,11 +17,8 @@ namespace BikeDistributor.Services
     public   class DiscountService : BaseService, IDiscountService
     {
 
-        private readonly IDataRepositoryService _dataRepositoryService;
-
-        public  DiscountService(IDataRepositoryService dataRepositoryService)
+        public  DiscountService()
         {
-            _dataRepositoryService = dataRepositoryService;
         }
 
         public virtual OrderModel CalculateDiscount(OrderModel orderModel)
@@ -38,10 +35,10 @@ namespace BikeDistributor.Services
                 return orderModel;
             }
 
-            foreach (var orderLineModel in orderModel.Products)
+            foreach (var orderLineModel in orderModel.OrderLines)
             {
                 orderLineModel.Product.DiscountedPrice = ApplyDiscount(orderLineModel, orderModel.DiscountCode);
-                orderModel.DiscountTotal += orderLineModel.Product.Msrp - orderLineModel.Product.DiscountedPrice;
+                orderModel.DiscountTotal += (orderLineModel.Product.Msrp - orderLineModel.Product.DiscountedPrice) * orderLineModel.Quantity;
             }
            
             return orderModel;

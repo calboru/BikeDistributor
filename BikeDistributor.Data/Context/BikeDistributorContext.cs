@@ -31,7 +31,7 @@ namespace BikeDistributor.Data.Context
                 .WillCascadeOnDelete();
 
             modelBuilder.Entity<Order>()
-                .HasMany(ol => ol.Products)
+                .HasMany(ol => ol.OrderLines)
                 .WithRequired()
                 .HasForeignKey(x => x.OrderId)
                 .WillCascadeOnDelete();
