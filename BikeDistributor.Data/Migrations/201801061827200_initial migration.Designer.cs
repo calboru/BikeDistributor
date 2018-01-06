@@ -7,13 +7,13 @@ namespace BikeDistributor.Data.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class MakingproductIdrequiredinorderline : IMigrationMetadata
+    public sealed partial class initialmigration : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(MakingproductIdrequiredinorderline));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialmigration));
         
         string IMigrationMetadata.Id
         {
-            get { return "201712291940419_Making productId required in orderline"; }
+            get { return "201801061827200_initial migration"; }
         }
         
         string IMigrationMetadata.Source

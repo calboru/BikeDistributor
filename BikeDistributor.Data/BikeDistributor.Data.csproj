@@ -116,57 +116,9 @@
     <Compile Include="Interfaces\Common\IDataRepository.cs" />
     <Compile Include="Interfaces\Common\IReadOnlyRepository.cs" />
     <Compile Include="Interfaces\Common\IRepository.cs" />
-    <Compile Include="Migrations\201712282011397_InitalMigration.cs" />
-    <Compile Include="Migrations\201712282011397_InitalMigration.Designer.cs">
-      <DependentUpon>201712282011397_InitalMigration.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712282257468_Added brand and make fields in product.cs" />
-    <Compile Include="Migrations\201712282257468_Added brand and make fields in product.Designer.cs">
-      <DependentUpon>201712282257468_Added brand and make fields in product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712290007374_Added business entity and location.cs" />
-    <Compile Include="Migrations\201712290007374_Added business entity and location.Designer.cs">
-      <DependentUpon>201712290007374_Added business entity and location.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712290017215_changed create date time to null.cs" />
-    <Compile Include="Migrations\201712290017215_changed create date time to null.Designer.cs">
-      <DependentUpon>201712290017215_changed create date time to null.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712291745552_Adding entities.cs" />
-    <Compile Include="Migrations\201712291745552_Adding entities.Designer.cs">
-      <DependentUpon>201712291745552_Adding entities.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712291757082_Adding quantity to order line.cs" />
-    <Compile Include="Migrations\201712291757082_Adding quantity to order line.Designer.cs">
-      <DependentUpon>201712291757082_Adding quantity to order line.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712291940419_Making productId required in orderline.cs" />
-    <Compile Include="Migrations\201712291940419_Making productId required in orderline.Designer.cs">
-      <DependentUpon>201712291940419_Making productId required in orderline.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712291944352_Making OrderedById required in Order.cs" />
-    <Compile Include="Migrations\201712291944352_Making OrderedById required in Order.Designer.cs">
-      <DependentUpon>201712291944352_Making OrderedById required in Order.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712300000240_adding Msrp to Product and FinalPrice to orderline.cs" />
-    <Compile Include="Migrations\201712300000240_adding Msrp to Product and FinalPrice to orderline.Designer.cs">
-      <DependentUpon>201712300000240_adding Msrp to Product and FinalPrice to orderline.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712301940581_Removing FinalPrice property in OrderLine.cs" />
-    <Compile Include="Migrations\201712301940581_Removing FinalPrice property in OrderLine.Designer.cs">
-      <DependentUpon>201712301940581_Removing FinalPrice property in OrderLine.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201712302124206_Moving price properties to product.cs" />
-    <Compile Include="Migrations\201712302124206_Moving price properties to product.Designer.cs">
-      <DependentUpon>201712302124206_Moving price properties to product.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801030337497_Added HtmlTemplate model.cs" />
-    <Compile Include="Migrations\201801030337497_Added HtmlTemplate model.Designer.cs">
-      <DependentUpon>201801030337497_Added HtmlTemplate model.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\201801041822571_Renaming ordermodel.products to ordermodel.orderlines.cs" />
-    <Compile Include="Migrations\201801041822571_Renaming ordermodel.products to ordermodel.orderlines.Designer.cs">
-      <DependentUpon>201801041822571_Renaming ordermodel.products to ordermodel.orderlines.cs</DependentUpon>
+    <Compile Include="Migrations\201801061827200_initial migration.cs" />
+    <Compile Include="Migrations\201801061827200_initial migration.Designer.cs">
+      <DependentUpon>201801061827200_initial migration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Entities\Product.cs" />
@@ -176,51 +128,15 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201712282011397_InitalMigration.resx">
-      <DependentUpon>201712282011397_InitalMigration.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712282257468_Added brand and make fields in product.resx">
-      <DependentUpon>201712282257468_Added brand and make fields in product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712290007374_Added business entity and location.resx">
-      <DependentUpon>201712290007374_Added business entity and location.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712290017215_changed create date time to null.resx">
-      <DependentUpon>201712290017215_changed create date time to null.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712291745552_Adding entities.resx">
-      <DependentUpon>201712291745552_Adding entities.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712291757082_Adding quantity to order line.resx">
-      <DependentUpon>201712291757082_Adding quantity to order line.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712291940419_Making productId required in orderline.resx">
-      <DependentUpon>201712291940419_Making productId required in orderline.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712291944352_Making OrderedById required in Order.resx">
-      <DependentUpon>201712291944352_Making OrderedById required in Order.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712300000240_adding Msrp to Product and FinalPrice to orderline.resx">
-      <DependentUpon>201712300000240_adding Msrp to Product and FinalPrice to orderline.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712301940581_Removing FinalPrice property in OrderLine.resx">
-      <DependentUpon>201712301940581_Removing FinalPrice property in OrderLine.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201712302124206_Moving price properties to product.resx">
-      <DependentUpon>201712302124206_Moving price properties to product.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801030337497_Added HtmlTemplate model.resx">
-      <DependentUpon>201801030337497_Added HtmlTemplate model.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\201801041822571_Renaming ordermodel.products to ordermodel.orderlines.resx">
-      <DependentUpon>201801041822571_Renaming ordermodel.products to ordermodel.orderlines.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\BikeDistributor.Shared\BikeDistributor.Shared.csproj">
       <Project>{ec4302f5-4c47-41e5-aad6-8482b9dda690}</Project>
       <Name>BikeDistributor.Shared</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801061827200_initial migration.resx">
+      <DependentUpon>201801061827200_initial migration.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>

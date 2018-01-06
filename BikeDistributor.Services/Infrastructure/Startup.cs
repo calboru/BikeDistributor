@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AutoMapper;
 using BikeDistributor.Data.Context;
 using Unity;
 
@@ -18,7 +19,7 @@ namespace BikeDistributor.Services.Infrastructure
         {
             BikeDistribitorDb = new BikeDistributorContext();
             UnityContainer = UnityConfig.Register();
-          
+
 
         }
     }

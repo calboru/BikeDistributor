@@ -26,9 +26,7 @@ namespace BikeDistributor.Data.Context
         {
             modelBuilder.Entity<BusinessEntity>()
                 .HasMany(l => l.Location)
-                .WithRequired()
-                .HasForeignKey(x => x.BusinessEntityId)
-                .WillCascadeOnDelete();
+                .WithRequired();
 
             modelBuilder.Entity<Order>()
                 .HasMany(ol => ol.OrderLines)
@@ -38,10 +36,6 @@ namespace BikeDistributor.Data.Context
 
             modelBuilder.Entity<OrderLine>()
                 .HasRequired(x => x.Product);
-
-            modelBuilder.Entity<Order>()
-                .HasRequired(x => x.OrderedBy);
-            
 
         }
     }

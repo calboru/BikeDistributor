@@ -20,6 +20,8 @@ namespace BikeDistributor.Services.Common
                 cfg.AddProfile<ClientMappingProfile>();
             });
             _mapper = config.CreateMapper();
+
+          
         }
 
         public virtual TDestination Map<TSource, TDestination>(TSource source) where TSource : class where TDestination : class

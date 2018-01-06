@@ -11,6 +11,10 @@ namespace BikeDistributor.Data.Entities
     public class OrderLine: BaseEntity<int>
     {
         public virtual int OrderId { get; set; }
+
+        [ForeignKey("Product")]
+        public int ProductId { get; set; }
+
         public virtual Product Product { get; set; }
         public virtual int Quantity { get; set; }
     }
