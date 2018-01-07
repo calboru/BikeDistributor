@@ -62,7 +62,6 @@
   </Choose>
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
-    <Compile Include="OrderTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\DataRepositoryServiceTest.cs" />
     <Compile Include="Services\DiscountServiceTest.cs" />
