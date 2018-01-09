@@ -40,7 +40,7 @@ namespace BikeDistributor.Test.Services
             var a = _orderedReceiptListService.Generate(1, "OrderItems", "OrderItem", "SubTotals", "SubTotalItem");
 
             const string b =
-                "<ul class='OrderItems'><li class='OrderItem'>SKU:  Brand:Bike1 Make: 2018 Model:Bike1-Model Msrp:100 Discounted Price:0 </li><li class='OrderItem'>SKU:  Brand:Bike2 Make: 2018 Model:Bike2-Model Msrp:100 Discounted Price:0 </li></ul><ul class='SubTotals'><li class='SubTotalItem'Total Discount:0</li><li class='SubTotalItem'Total Tax: 0</li><li class='SubTotalItem'Sub Total: 0</li></ul>";
+                "<ul class='OrderItems'><li class='OrderItem'>SKU:  Brand:Bike1 Make: 2018 Model:Bike1-Model Msrp:100 Discounted Price:0 Quantity:1</li><li class='OrderItem'>SKU:  Brand:Bike2 Make: 2018 Model:Bike2-Model Msrp:100 Discounted Price:0 Quantity:1</li></ul><ul class='SubTotals'><li class='SubTotalItem'Total Discount:0</li><li class='SubTotalItem'Total Tax: 0</li><li class='SubTotalItem'Sub Total: 0</li></ul>";
 
             Assert.IsTrue(a.Equals(b));
         }
